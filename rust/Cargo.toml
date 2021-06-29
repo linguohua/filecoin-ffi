@@ -19,6 +19,7 @@ crate-type = ["rlib", "staticlib"]
 [dependencies]
 bls-signatures = { version = "0.10.0", default-features = false, features = ["blst"] }
 blstrs = { version = "0.3" }
+mimalloc = { version = "*", default-features = false }
 byteorder = "1.2"
 drop_struct_macro_derive = "0.5.0"
 ff = { version = "0.3.1", package = "fff" }
@@ -55,3 +56,14 @@ blst = ["filecoin-proofs-api/blst", "bellperson/blst", "storage-proofs-porep/bls
 blst-portable = ["bls-signatures/blst-portable", "blstrs/portable"]
 gpu = ["filecoin-proofs-api/gpu", "bellperson/gpu", "storage-proofs-porep/gpu"]
 multicore-sdr = ["storage-proofs-porep/multicore-sdr"]
+
+[patch.crates-io]
+merkletree = { path = '../../../../merkletree' }
+bellperson = { path = '../../../../lin-bellperson' }
+neptune = { path = '../../../../neptune' }
+#mimalloc = { path = '../../../../mimalloc_rust' }
+
+#filecoin-proofs = { path = '../../../../lin-rust-fil-proofs/filecoin-proofs', version = "~7.0", default-features = false }
+filecoin-proofs-v1 = { package = "filecoin-proofs", version = "~7.0", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { version = "~2.0", path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+storage-proofs-core = { version = "~7.0", path = '../../../../lin-rust-fil-proofs/storage-proofs-core', default-features = false }

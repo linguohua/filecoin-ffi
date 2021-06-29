@@ -5,3 +5,9 @@
 pub mod bls;
 pub mod proofs;
 pub mod util;
+
+// global allocator
+use mimalloc::MiMalloc;
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
