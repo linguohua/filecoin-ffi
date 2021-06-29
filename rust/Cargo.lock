@@ -827,7 +827,7 @@ dependencies = [
  "rayon",
  "rust-gpu-tools",
  "serde_json",
- "storage-proofs-porep 8.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "storage-proofs-porep",
  "tempfile",
 ]
 
@@ -882,7 +882,7 @@ dependencies = [
  "serde_json",
  "sha2 0.9.5",
  "storage-proofs-core",
- "storage-proofs-porep 8.0.2",
+ "storage-proofs-porep",
  "storage-proofs-post",
  "typenum",
 ]
@@ -1899,22 +1899,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "sha2raw"
-version = "3.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94fad39b7b5a95c5b6aa822d1b5a2246306ca8913084687cb5f03cd217ad2514"
-dependencies = [
- "block-buffer 0.9.0",
- "byteorder 1.4.3",
- "cpuid-bool",
- "digest 0.9.0",
- "fake-simd",
- "lazy_static",
- "opaque-debug 0.3.0",
- "sha2-asm",
-]
-
-[[package]]
 name = "static_assertions"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1975,6 +1959,7 @@ dependencies = [
  "fr32 1.0.2",
  "generic-array 0.14.4",
  "hex",
+ "hwloc",
  "lazy_static",
  "libc",
  "log",
@@ -1991,46 +1976,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2 0.9.5",
- "sha2raw 3.0.2",
- "storage-proofs-core",
-]
-
-[[package]]
-name = "storage-proofs-porep"
-version = "8.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "191fd7c7a2743199263629d6dbd32c52db1a50430eca150c0345a20259649077"
-dependencies = [
- "anyhow",
- "bellperson",
- "bincode",
- "byte-slice-cast",
- "byteorder 1.4.3",
- "crossbeam 0.8.1",
- "digest 0.9.0",
- "fdlimit",
- "fff",
- "filecoin-hashers",
- "fr32 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "generic-array 0.14.4",
- "hex",
- "hwloc",
- "lazy_static",
- "libc",
- "log",
- "mapr",
- "merkletree",
- "neptune",
- "num-bigint 0.2.6",
- "num-traits 0.2.14",
- "num_cpus",
- "pretty_assertions",
- "rand 0.7.3",
- "rayon",
- "serde",
- "serde_json",
- "sha2 0.9.5",
- "sha2raw 3.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sha2raw",
  "storage-proofs-core",
 ]
 
