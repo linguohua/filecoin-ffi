@@ -63,7 +63,8 @@ bellperson = { path = '../../../../lin-bellperson' }
 neptune = { path = '../../../../neptune' }
 #mimalloc = { path = '../../../../mimalloc_rust' }
 
-#filecoin-proofs = { path = '../../../../lin-rust-fil-proofs/filecoin-proofs', version = "~7.0", default-features = false }
-filecoin-proofs-v1 = { package = "filecoin-proofs", version = "~7.0", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
-filecoin-hashers = { version = "~2.0", path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
-storage-proofs-core = { version = "~7.0", path = '../../../../lin-rust-fil-proofs/storage-proofs-core', default-features = false }
+#filecoin-proofs = { path = '../../../../lin-rust-fil-proofs/filecoin-proofs', default-features = false }
+filecoin-proofs-v1 = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core', default-features = false }
+

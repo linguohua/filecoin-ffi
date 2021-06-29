@@ -7,7 +7,6 @@ name = "addr2line"
 version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e7a2e47a1fbe209ee101dd6d61285226744c6c8d3c21c8dc878ba6cb9f467f3a"
-
 dependencies = [
  "gimli",
 ]
@@ -107,7 +106,6 @@ name = "backtrace"
 version = "0.3.60"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b7815ea54e4d821e791162e078acbebfd6d8c8939cd559c9335dceb1c8ca7282"
-
 dependencies = [
  "addr2line",
  "cc",
@@ -121,11 +119,9 @@ dependencies = [
 [[package]]
 name = "bellperson"
 version = "0.14.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7edb7b07cab660137847825b90d1c88e82907689ee1e935eb2101579bc649e0a"
 dependencies = [
- "bincode",
  "anyhow",
+ "bincode",
  "bit-vec",
  "blake2s_simd",
  "blstrs",
@@ -134,10 +130,11 @@ dependencies = [
  "digest 0.9.0",
  "ff-cl-gen",
  "fff",
+ "fnv",
  "fs2",
  "groupy",
- "itertools 0.9.0",
  "hwloc",
+ "itertools 0.9.0",
  "lazy_static",
  "libc",
  "log",
@@ -824,21 +821,19 @@ dependencies = [
  "groupy",
  "libc",
  "log",
+ "mimalloc",
  "rand 0.7.3",
  "rand_chacha 0.2.2",
  "rayon",
  "rust-gpu-tools",
  "serde_json",
- "storage-proofs-porep",
+ "storage-proofs-porep 8.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "tempfile",
 ]
 
 [[package]]
 name = "filecoin-hashers"
 version = "3.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f64d4dbf998e165e1f29e4ea3af74dd35afb0ae4d9dc90242b2e05d6f54f908a"
-
 dependencies = [
  "anyhow",
  "bellperson",
@@ -856,9 +851,6 @@ dependencies = [
 [[package]]
 name = "filecoin-proofs"
 version = "8.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e21d7e3bf0c9980c50f36c1e668a88796c34c5bf4dc4d0158af33d4f8a578d9"
-
 dependencies = [
  "anyhow",
  "bellperson",
@@ -871,23 +863,26 @@ dependencies = [
  "fff",
  "fil_logger",
  "filecoin-hashers",
- "fr32 0.2.1",
+ "fr32 1.0.2",
  "generic-array 0.14.4",
  "groupy",
  "hex",
  "itertools 0.9.0",
  "lazy_static",
+ "libc",
  "log",
+ "mapr",
  "memmap",
  "merkletree",
  "rand 0.7.3",
  "rand_xorshift",
  "rayon",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.9.5",
  "storage-proofs-core",
- "storage-proofs-porep",
+ "storage-proofs-porep 8.0.2",
  "storage-proofs-post",
  "typenum",
 ]
@@ -903,7 +898,7 @@ dependencies = [
  "bincode",
  "filecoin-hashers",
  "filecoin-proofs",
- "fr32 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "fr32 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde",
  "storage-proofs-core",
 ]
@@ -929,6 +924,24 @@ dependencies = [
  "log",
  "regex",
  "yansi",
+]
+
+[[package]]
+name = "fnv"
+version = "1.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
+
+[[package]]
+name = "fr32"
+version = "1.0.2"
+dependencies = [
+ "anyhow",
+ "bellperson",
+ "byte-slice-cast",
+ "byteorder 1.4.3",
+ "fff",
+ "thiserror",
 ]
 
 [[package]]
@@ -1141,6 +1154,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "12b8adadd720df158f4d70dfe7ccc6adb0472d7c55ca83445f6a5ab3e36f8fb6"
 
 [[package]]
+name = "libmimalloc-sys"
+version = "0.1.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d1b8479c593dba88c2741fc50b92e13dbabbbe0bd504d979f244ccc1a5b1c01"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "log"
 version = "0.4.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1202,8 +1224,6 @@ dependencies = [
 [[package]]
 name = "merkletree"
 version = "0.21.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2202d6eb93a775e0a619fc08924b341d0cf12d6e0f064ee52d24311de45b925b"
 dependencies = [
  "anyhow",
  "arrayref",
@@ -1219,6 +1239,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "mimalloc"
+version = "0.1.26"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fb74897ce508e6c49156fd1476fc5922cbc6e75183c65e399c765a09122e5130"
+dependencies = [
+ "libmimalloc-sys",
+]
+
+[[package]]
 name = "miniz_oxide"
 version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1231,8 +1260,6 @@ dependencies = [
 [[package]]
 name = "neptune"
 version = "3.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec660e9f6f2ff666996be8d34fa70142f05bf25b4268d0ab9f325d80378bf4e5"
 dependencies = [
  "bellperson",
  "blake2s_simd",
@@ -1860,9 +1887,22 @@ dependencies = [
 [[package]]
 name = "sha2raw"
 version = "3.0.2"
+dependencies = [
+ "block-buffer 0.9.0",
+ "byteorder 1.4.3",
+ "cpuid-bool",
+ "digest 0.9.0",
+ "fake-simd",
+ "lazy_static",
+ "opaque-debug 0.3.0",
+ "sha2-asm",
+]
+
+[[package]]
+name = "sha2raw"
+version = "3.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94fad39b7b5a95c5b6aa822d1b5a2246306ca8913084687cb5f03cd217ad2514"
-
 dependencies = [
  "block-buffer 0.9.0",
  "byteorder 1.4.3",
@@ -1883,9 +1923,6 @@ checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 [[package]]
 name = "storage-proofs-core"
 version = "8.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "21b6344ca35feeda13a5dbe282f00d85a0bb86bc6a78a619dc2858fe81ee2d9c"
-
 dependencies = [
  "aes",
  "anyhow",
@@ -1897,7 +1934,7 @@ dependencies = [
  "config",
  "fff",
  "filecoin-hashers",
- "fr32 0.2.1",
+ "fr32 1.0.2",
  "fs2",
  "generic-array 0.14.4",
  "hex",
@@ -1923,9 +1960,46 @@ dependencies = [
 [[package]]
 name = "storage-proofs-porep"
 version = "8.0.2"
+dependencies = [
+ "anyhow",
+ "bellperson",
+ "bincode",
+ "byte-slice-cast",
+ "byteorder 1.4.3",
+ "crossbeam 0.8.1",
+ "crossbeam-channel 0.5.1",
+ "digest 0.9.0",
+ "fdlimit",
+ "fff",
+ "filecoin-hashers",
+ "fr32 1.0.2",
+ "generic-array 0.14.4",
+ "hex",
+ "lazy_static",
+ "libc",
+ "log",
+ "mapr",
+ "merkletree",
+ "neptune",
+ "num-bigint 0.2.6",
+ "num-traits 0.2.14",
+ "num_cpus",
+ "pretty_assertions",
+ "rand 0.7.3",
+ "rayon",
+ "scopeguard",
+ "serde",
+ "serde_json",
+ "sha2 0.9.5",
+ "sha2raw 3.0.2",
+ "storage-proofs-core",
+]
+
+[[package]]
+name = "storage-proofs-porep"
+version = "8.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "191fd7c7a2743199263629d6dbd32c52db1a50430eca150c0345a20259649077"
-
 dependencies = [
  "anyhow",
  "bellperson",
@@ -1937,7 +2011,7 @@ dependencies = [
  "fdlimit",
  "fff",
  "filecoin-hashers",
- "fr32 0.2.1",
+ "fr32 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "generic-array 0.14.4",
  "hex",
  "hwloc",
@@ -1956,16 +2030,13 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2 0.9.5",
- "sha2raw",
+ "sha2raw 3.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "storage-proofs-core",
 ]
 
 [[package]]
 name = "storage-proofs-post"
 version = "8.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8379954982a7669bef1b272bef7d0158ae8edddaf60a83e31e142aabbce40935"
-
 dependencies = [
  "anyhow",
  "bellperson",
@@ -1975,7 +2046,7 @@ dependencies = [
  "crossbeam 0.8.1",
  "fff",
  "filecoin-hashers",
- "fr32 0.2.1",
+ "fr32 1.0.2",
  "generic-array 0.14.4",
  "hex",
  "log",
