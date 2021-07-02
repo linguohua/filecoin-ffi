@@ -55,7 +55,7 @@ pub unsafe fn to_public_replica_info_map(
             )
         })
         .collect();
-    info!("to_private_replica {} load {} sectors p-aux-files, tooks:{}", tag,
+    info!("to_private_replica {} load {} sectors p-aux-files, tooks:{:#?}", tag,
         replicas_len, wall_start_time.elapsed());
     Ok(map)
 }
@@ -118,7 +118,7 @@ pub unsafe fn to_private_replica_info_map(
         })
         .collect();
 
-    info!("to_private_replica {} load {} sectors t-aux-files, tooks:{}", tag,
+    info!("to_private_replica {} load {} sectors t-aux-files, tooks:{:#?}", tag,
         replicas_len, wall_start_time.elapsed());
 
     Ok(map)
