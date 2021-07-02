@@ -952,7 +952,6 @@ pub unsafe extern "C" fn fil_generate_winning_post(
                 &randomness.inner,
                 &rs,
                 prover_id.inner,
-                "winningPOST",
             )
         });
 
