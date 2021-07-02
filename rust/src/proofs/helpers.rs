@@ -9,6 +9,8 @@ use filecoin_proofs_api::{PrivateReplicaInfo, PublicReplicaInfo, SectorId};
 use super::types::{fil_PrivateReplicaInfo, fil_PublicReplicaInfo, fil_RegisteredPoStProof};
 use crate::proofs::types::{fil_PoStProof, PoStProof};
 
+use log::info;
+
 #[derive(Debug, Clone)]
 struct PublicReplicaInfoTmp {
     pub registered_proof: fil_RegisteredPoStProof,
@@ -20,6 +22,7 @@ struct PublicReplicaInfoTmp {
 pub unsafe fn to_public_replica_info_map(
     replicas_ptr: *const fil_PublicReplicaInfo,
     replicas_len: libc::size_t,
+    tag: &str,
 ) -> Result<BTreeMap<SectorId, PublicReplicaInfo>> {
     use rayon::prelude::*;
 
@@ -35,6 +38,7 @@ pub unsafe fn to_public_replica_info_map(
         });
     }
 
+    let wall_start_time = Instant::now();
     let map = replicas
         .into_par_iter()
         .map(|info| {
@@ -50,7 +54,8 @@ pub unsafe fn to_public_replica_info_map(
             )
         })
         .collect();
-
+    info!("to_private_replica {} load {} sectors p-aux-files, tooks:{}", tag,
+        replicas_len, wall_start_time.elapse());
     Ok(map)
 }
 
@@ -66,6 +71,7 @@ struct PrivateReplicaInfoTmp {
 pub unsafe fn to_private_replica_info_map(
     replicas_ptr: *const fil_PrivateReplicaInfo,
     replicas_len: libc::size_t,
+    tag: &str,
 ) -> Result<BTreeMap<SectorId, PrivateReplicaInfo>> {
     use rayon::prelude::*;
 
@@ -87,6 +93,7 @@ pub unsafe fn to_private_replica_info_map(
         })
         .collect();
 
+    let wall_start_time = Instant::now();
     let map = replicas
         .into_par_iter()
         .map(|info| {
@@ -109,6 +116,9 @@ pub unsafe fn to_private_replica_info_map(
             )
         })
         .collect();
+
+    info!("to_private_replica {} load {} sectors t-aux-files, tooks:{}", tag,
+        replicas_len, wall_start_time.elapse());
 
     Ok(map)
 }
