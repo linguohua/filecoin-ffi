@@ -947,7 +947,7 @@ pub unsafe extern "C" fn fil_generate_winning_post(
 
         let mut response = fil_GenerateWinningPoStResponse::default();
 
-        let result = to_private_replica_info_map(replicas_ptr, replicas_len).and_then(|rs| {
+        let result = to_private_replica_info_map(replicas_ptr, replicas_len, "winningPOST").and_then(|rs| {
             filecoin_proofs_api::post::generate_winning_post(
                 &randomness.inner,
                 &rs,

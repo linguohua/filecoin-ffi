@@ -10,6 +10,7 @@ use super::types::{fil_PrivateReplicaInfo, fil_PublicReplicaInfo, fil_Registered
 use crate::proofs::types::{fil_PoStProof, PoStProof};
 
 use log::info;
+use std::time::Instant;
 
 #[derive(Debug, Clone)]
 struct PublicReplicaInfoTmp {
