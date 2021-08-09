@@ -61,7 +61,7 @@ multicore-sdr = ["storage-proofs-porep/multicore-sdr"]
 merkletree = { path = '../../../../merkletree' }
 bellperson = { path = '../../../../lin-bellperson' }
 neptune = { path = '../../../../neptune' }
-#mimalloc = { path = '../../../../mimalloc_rust' }
+mimalloc = { path = '../../../../mimalloc_rust' }
 
 #filecoin-proofs = { path = '../../../../lin-rust-fil-proofs/filecoin-proofs', default-features = false }
 filecoin-proofs-v1 = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
