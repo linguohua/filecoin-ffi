@@ -947,7 +947,7 @@ pub unsafe extern "C" fn fil_generate_winning_post(
 
         let mut response = fil_GenerateWinningPoStResponse::default();
 
-        let result = to_private_replica_info_map(replicas_ptr, replicas_len, "winningPOST").and_then(|rs| {
+        let result = to_private_replica_info_map(replicas_ptr, replicas_len).and_then(|rs| {
             filecoin_proofs_api::post::generate_winning_post(
                 &randomness.inner,
                 &rs,
@@ -1007,7 +1007,7 @@ pub unsafe extern "C" fn fil_verify_winning_post(
 
         let mut response = fil_VerifyWinningPoStResponse::default();
 
-        let convert = super::helpers::to_public_replica_info_map(replicas_ptr, replicas_len, "verify_winning_post");
+        let convert = super::helpers::to_public_replica_info_map(replicas_ptr, replicas_len);
 
         let result = convert.and_then(|replicas| {
             let post_proofs = c_to_rust_post_proofs(proofs_ptr, proofs_len)?;
@@ -1135,7 +1135,7 @@ pub unsafe extern "C" fn fil_generate_window_post(
 
         let mut response = fil_GenerateWindowPoStResponse::default();
 
-        let result = to_private_replica_info_map(replicas_ptr, replicas_len, "windowPOST").and_then(|rs| {
+        let result = to_private_replica_info_map(replicas_ptr, replicas_len).and_then(|rs| {
             filecoin_proofs_api::post::generate_window_post(&randomness.inner, &rs, prover_id.inner)
         });
 
@@ -1204,7 +1204,7 @@ pub unsafe extern "C" fn fil_verify_window_post(
 
         let mut response = fil_VerifyWindowPoStResponse::default();
 
-        let convert = super::helpers::to_public_replica_info_map(replicas_ptr, replicas_len, "VerifyWindowPoSt");
+        let convert = super::helpers::to_public_replica_info_map(replicas_ptr, replicas_len);
 
         let result = convert.and_then(|replicas| {
             let post_proofs = c_to_rust_post_proofs(proofs_ptr, proofs_len)?;

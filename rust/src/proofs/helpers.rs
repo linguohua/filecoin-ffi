@@ -23,7 +23,6 @@ struct PublicReplicaInfoTmp {
 pub unsafe fn to_public_replica_info_map(
     replicas_ptr: *const fil_PublicReplicaInfo,
     replicas_len: libc::size_t,
-    tag: &str,
 ) -> Result<BTreeMap<SectorId, PublicReplicaInfo>> {
     use rayon::prelude::*;
 
@@ -70,7 +69,6 @@ struct PrivateReplicaInfoTmp {
 pub unsafe fn to_private_replica_info_map(
     replicas_ptr: *const fil_PrivateReplicaInfo,
     replicas_len: libc::size_t,
-    tag: &str,
 ) -> Result<BTreeMap<SectorId, PrivateReplicaInfo>> {
     use rayon::prelude::*;
 
