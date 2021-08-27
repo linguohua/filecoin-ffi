@@ -92,7 +92,6 @@ pub unsafe fn to_private_replica_info_map(
         })
         .collect();
 
-    let wall_start_time = Instant::now();
     let map = replicas
         .into_par_iter()
         .map(|info| {
@@ -115,9 +114,6 @@ pub unsafe fn to_private_replica_info_map(
             )
         })
         .collect();
-
-    info!("to_private_replica {} load {} sectors t-aux-files, tooks:{:#?}", tag,
-        replicas_len, wall_start_time.elapsed());
 
     Ok(map)
 }
