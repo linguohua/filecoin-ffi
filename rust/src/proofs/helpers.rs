@@ -9,9 +9,6 @@ use filecoin_proofs_api::{PrivateReplicaInfo, PublicReplicaInfo, SectorId};
 use super::types::{fil_PrivateReplicaInfo, fil_PublicReplicaInfo, fil_RegisteredPoStProof};
 use crate::proofs::types::{fil_PoStProof, PoStProof};
 
-use log::info;
-use std::time::Instant;
-
 #[derive(Debug, Clone)]
 struct PublicReplicaInfoTmp {
     pub registered_proof: fil_RegisteredPoStProof,
