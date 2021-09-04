@@ -19,6 +19,7 @@ crate-type = ["rlib", "staticlib"]
 [dependencies]
 bls-signatures = { version = "0.10.0", default-features = false, features = ["blst"] }
 blstrs = { version = "0.3" }
+mimalloc = { version = "*", default-features = false }
 byteorder = "1.2"
 drop_struct_macro_derive = "0.5.0"
 ff = { version = "0.3.1", package = "fff" }
@@ -58,10 +59,22 @@ gpu = ["filecoin-proofs-api/gpu", "bellperson/gpu", "storage-proofs-porep/gpu"]
 multicore-sdr = ["storage-proofs-porep/multicore-sdr"]
 
 [patch.crates-io]
-storage-proofs-core = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-storage-proofs-porep = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-storage-proofs-post = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-fr32 = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-filecoin-proofs = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-filecoin-hashers = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
-neptune = { git = "https://github.com/filecoin-project/neptune", rev = "v4.0.0-revert-deps-hotfix" }
+#storage-proofs-core = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#storage-proofs-porep = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#storage-proofs-post = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#fr32 = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#filecoin-proofs = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#filecoin-hashers = { git = "https://github.com/filecoin-project/rust-fil-proofs", rev = "filecoin-proofs-v9.0.1-revert-deps-hotfix" }
+#neptune = { git = "https://github.com/filecoin-project/neptune", rev = "v4.0.0-revert-deps-hotfix" }
+
+storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core' }
+storage-proofs-porep = { path = '../../../../lin-rust-fil-proofs/storage-proofs-porep' }
+storage-proofs-post = { path = '../../../../lin-rust-fil-proofs/storage-proofs-post' }
+fr32 = { path = '../../../../lin-rust-fil-proofs/fr32' }
+filecoin-proofs = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+neptune = { path = '../../../../neptune' }
+
+merkletree = { path = '../../../../merkletree' }
+bellperson = { path = '../../../../lin-bellperson' }
+mimalloc = { path = '../../../../mimalloc_rust' }
