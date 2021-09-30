@@ -40,8 +40,8 @@ storage-proofs-porep = { version = "~9.0.1", default-features = false }
 
 [dependencies.filecoin-proofs-api]
 package = "filecoin-proofs-api"
-git = "https://github.com/filecoin-project/rust-filecoin-proofs-api"
-rev = "v9.0.0-revert-deps-hotfix"
+# git = "https://github.com/filecoin-project/rust-filecoin-proofs-api"
+# rev = "v9.0.0-revert-deps-hotfix"
 default-features = false
 
 [build-dependencies]
@@ -78,3 +78,4 @@ neptune = { path = '../../../../neptune' }
 merkletree = { path = '../../../../merkletree' }
 bellperson = { path = '../../../../lin-bellperson' }
 mimalloc = { path = '../../../../mimalloc_rust' }
+filecoin-proofs-api = { path = '../../../../rust-filecoin-proofs-api' }
