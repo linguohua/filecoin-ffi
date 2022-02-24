@@ -36,14 +36,14 @@ anyhow = "1.0.23"
 bellperson = { version = "0.18", default-features = false }
 serde_json = "1.0.46"
 memmap = "0.7"
-rust-gpu-tools = { version = "0.5", default-features = false }
+rust-gpu-tools = { version = "0.6", default-features = false }
 storage-proofs-porep = { version = "~11.0", default-features = false }
 fr32 = { version = "~4.0", default-features = false }
 
 [dependencies.filecoin-proofs-api]
 package = "filecoin-proofs-api"
 version = "11.0"
-git = "https://github.com/filecoin-project/rust-filecoin-proofs-api"
+#git = "https://github.com/filecoin-project/rust-filecoin-proofs-api"
 default-features = false
 
 [build-dependencies]

@@ -126,7 +126,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_core 0.6.3",
  "rayon",
- "rust-gpu-tools 0.6.0",
+ "rust-gpu-tools",
  "serde",
  "sha2 0.9.9",
  "thiserror",
@@ -765,7 +765,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_chacha 0.3.1",
  "rayon",
- "rust-gpu-tools 0.5.0",
+ "rust-gpu-tools",
  "serde_json",
  "storage-proofs-porep",
  "tempfile",
@@ -836,7 +836,6 @@ dependencies = [
 [[package]]
 name = "filecoin-proofs-api"
 version = "11.0.0"
-source = "git+https://github.com/filecoin-project/rust-filecoin-proofs-api#250963c69f13bef8ab91f709e9e33c9e1d760fbd"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -845,6 +844,8 @@ dependencies = [
  "filecoin-hashers",
  "filecoin-proofs",
  "fr32",
+ "log",
+ "rayon",
  "serde",
  "storage-proofs-core",
  "storage-proofs-porep",
@@ -1190,7 +1191,7 @@ dependencies = [
  "itertools 0.8.2",
  "lazy_static",
  "log",
- "rust-gpu-tools 0.6.0",
+ "rust-gpu-tools",
  "sha2 0.9.9",
 ]
 
@@ -1653,22 +1654,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
 dependencies = [
  "winapi 0.3.9",
-]
-
-[[package]]
-name = "rust-gpu-tools"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1785ab2a8accec77189e23fead221f2543cebf7ccf569788511cdac9f5fad168"
-dependencies = [
- "dirs",
- "fil-rustacuda",
- "hex",
- "lazy_static",
- "log",
- "opencl3",
- "sha2 0.8.2",
- "thiserror",
 ]
 
 [[package]]
@@ -2271,7 +2256,3 @@ dependencies = [
  "syn 1.0.86",
  "synstructure",
 ]
-
-[[patch.unused]]
-name = "filecoin-proofs-api"
-version = "11.0.0"
