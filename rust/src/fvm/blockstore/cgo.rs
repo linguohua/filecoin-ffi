@@ -17,7 +17,7 @@ const MAX_BUF_SIZE: usize = 4 << 20; // 4MiB
 const MAX_BLOCK_BATCH: usize = 1024;
 
 #[ffi_export]
-pub fn data_vec_extend_func(d: *const u8, size: i32, vptr: *mut libc::c_void) {
+pub fn rust_vec_extend_func(d: *const u8, size: i32, vptr: *mut libc::c_void) {
    unsafe {
        let s = std::slice::from_raw_parts(d, size as usize);
        let v = vptr as *mut Vec<u8>;
