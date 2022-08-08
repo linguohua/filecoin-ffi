@@ -25,3 +25,9 @@ fn build_headers() -> std::io::Result<()> {
 
     Ok(())
 }
+
+// global allocator
+use mimalloc::MiMalloc;
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
