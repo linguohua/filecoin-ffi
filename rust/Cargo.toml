@@ -22,6 +22,7 @@ bls-signatures = { version = "0.12.0", default-features = false, features = ["bl
 blstrs = "0.5"
 byteorder = "1.4.3"
 ff = "0.12.0"
+mimalloc = { version = "*", default-features = false }
 filepath = "0.1.1"
 group = "0.12"
 libc = "0.2.58"
@@ -54,13 +55,14 @@ safer-ffi = { version = "0.0.7", features = ["proc_macros"] }
 [dependencies.filecoin-proofs-api]
 package = "filecoin-proofs-api"
 version = "12.0"
+#git = "https://github.com/filecoin-project/rust-filecoin-proofs-api"
 default-features = false
 
 [dev-dependencies]
 tempfile = "3.0.8"
 
 [features]
-default = ["opencl", "multicore-sdr" ]
+default = ["cuda", "multicore-sdr" ]
 blst-portable = ["bls-signatures/blst-portable", "blstrs/portable"]
 opencl = ["filecoin-proofs-api/opencl", "bellperson/opencl", "storage-proofs-porep/opencl", "rust-gpu-tools/opencl", "fvm/opencl"]
 cuda = ["filecoin-proofs-api/cuda", "bellperson/cuda", "storage-proofs-porep/cuda", "rust-gpu-tools/cuda", "fvm/cuda"]
@@ -69,3 +71,16 @@ c-headers = ["safer-ffi/headers"]
 
 [patch.crates-io]
 wasmtime = { git = "https://github.com/filecoin-project/wasmtime", branch = "fix/sse-feature" }
+filecoin-proofs-api = { path = '../../../../rust-filecoin-proofs-api' }
+storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core' }
+storage-proofs-porep = { path = '../../../../lin-rust-fil-proofs/storage-proofs-porep' }
+storage-proofs-post = { path = '../../../../lin-rust-fil-proofs/storage-proofs-post' }
+fr32 = { path = '../../../../lin-rust-fil-proofs/fr32' }
+filecoin-proofs = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+neptune = { path = '../../../../neptune' }
+
+merkletree = { path = '../../../../merkletree' }
+bellperson = { path = '../../../../lin-bellperson' }
+mimalloc = { path = '../../../../mimalloc_rust' }
+
