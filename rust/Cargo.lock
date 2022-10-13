@@ -2950,6 +2950,7 @@ dependencies = [
  "log",
  "merkletree",
  "rayon",
+ "scopeguard",
  "serde",
  "sha2 0.10.2",
  "storage-proofs-core",
