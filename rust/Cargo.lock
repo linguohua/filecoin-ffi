@@ -1034,7 +1034,7 @@ checksum = "78f1e64cf7ee95dacc8c739e0bf0b06583edaa8e0cee45b27ee2c08ae9343a2e"
 [[package]]
 name = "ec-gpu-gen"
 version = "0.3.0"
-source = "git+https://github.com/linguohua/ec-gpu.git#f324f1908335e58c5d8c7e746224e08283a291a5"
+source = "git+https://github.com/linguohua/ec-gpu.git#50a22636f521462997e4801267fcea4029a17b6e"
 dependencies = [
  "bitvec 0.22.3",
  "blstrs",
