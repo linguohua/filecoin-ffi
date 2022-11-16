@@ -70,7 +70,6 @@ multicore-sdr = ["storage-proofs-porep/multicore-sdr"]
 c-headers = ["safer-ffi/headers"]
 
 [patch.crates-io]
-wasmtime = { git = "https://github.com/filecoin-project/wasmtime", branch = "fix/sse-feature" }
 filecoin-proofs-api = { path = '../../../../rust-filecoin-proofs-api' }
 storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core' }
 storage-proofs-porep = { path = '../../../../lin-rust-fil-proofs/storage-proofs-porep' }
