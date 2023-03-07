@@ -151,8 +151,6 @@ checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
 [[package]]
 name = "bellperson"
 version = "0.22.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3de1da3f8f3ab6debddec738d15f97ce539d9256cb2fe2364aa7533c06ce7d56"
 dependencies = [
  "anyhow",
  "bincode",
@@ -1062,8 +1060,7 @@ checksum = "78f1e64cf7ee95dacc8c739e0bf0b06583edaa8e0cee45b27ee2c08ae9343a2e"
 [[package]]
 name = "ec-gpu-gen"
 version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be1a737d55dec6273ec8b07ee943bd26194434417fa652a1916a59ede4cf6f61"
+source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.20dev#2574ed1fa463c4b2bc61e0484ae01b97c12f32ca"
 dependencies = [
  "bitvec",
  "blstrs",
@@ -1240,7 +1237,6 @@ dependencies = [
  "log",
  "memmap",
  "mimalloc",
- "num-bigint",
  "num-traits",
  "rand",
  "rand_chacha",
@@ -3411,6 +3407,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "time"
+version = "0.1.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b797afad3f312d1c66a56d11d0316f916356d11bd158fbc6ca6389ff6bf805a"
+dependencies = [
+ "libc",
+ "wasi 0.10.0+wasi-snapshot-preview1",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "tinyvec"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3501,6 +3508,12 @@ name = "wasi"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
+
+[[package]]
+name = "wasi"
+version = "0.10.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasi"
