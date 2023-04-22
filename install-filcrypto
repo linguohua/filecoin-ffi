@@ -173,7 +173,7 @@ build_from_source() {
     # Default to use gpu flags, unless specified to disable
     gpu_flags=",opencl"
     if [ "${FFI_USE_CUDA}" == "1" ]; then
-        gpu_flags=",cuda"
+        gpu_flags=",cuda,opencl"
     fi
     if [ "${FFI_USE_GPU}" == "0" ]; then
         gpu_flags=""

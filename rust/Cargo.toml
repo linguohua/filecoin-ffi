@@ -21,6 +21,7 @@ crate-type = ["rlib", "staticlib"]
 bls-signatures = { version = "0.13.0", default-features = false, features = ["blst"] }
 blstrs = "0.6"
 byteorder = "1.4.3"
+mimalloc = { version = "*", default-features = false }
 filepath = "0.1.1"
 group = "0.12"
 libc = "0.2.58"
@@ -57,9 +58,23 @@ memmap2 = "0.5"
 tempfile = "3.0.8"
 
 [features]
-default = ["opencl", "multicore-sdr" ]
+default = ["cuda", "multicore-sdr" ]
 blst-portable = ["bls-signatures/blst-portable", "blstrs/portable"]
 opencl = ["filecoin-proofs-api/opencl", "rust-gpu-tools/opencl", "fvm3/opencl", "fvm2/opencl"]
 cuda = ["filecoin-proofs-api/cuda", "rust-gpu-tools/cuda", "fvm3/cuda", "fvm2/cuda"]
 multicore-sdr = ["filecoin-proofs-api/multicore-sdr"]
 c-headers = ["safer-ffi/headers"]
+
+[patch.crates-io]
+filecoin-proofs-api = { path = '../../../../rust-filecoin-proofs-api' }
+storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core' }
+storage-proofs-porep = { path = '../../../../lin-rust-fil-proofs/storage-proofs-porep' }
+storage-proofs-post = { path = '../../../../lin-rust-fil-proofs/storage-proofs-post' }
+fr32 = { path = '../../../../lin-rust-fil-proofs/fr32' }
+filecoin-proofs = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+neptune = { path = '../../../../neptune' }
+ec-gpu-gen = { git = 'https://github.com/linguohua/ec-gpu.git', branch = "v1.20dev" }
+merkletree = { path = '../../../../merkletree' }
+bellperson = { path = '../../../../lin-bellperson' }
+mimalloc = { path = '../../../../mimalloc_rust' }
