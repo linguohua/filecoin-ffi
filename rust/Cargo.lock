@@ -151,9 +151,8 @@ checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
 [[package]]
 name = "bellperson"
 version = "0.24.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d1a8623f815c0b1fd89efd9b5f4afbb937f91f51c1ebe3f6dda399c69fa938f3"
 dependencies = [
+ "anyhow",
  "bincode",
  "blake2s_simd 1.0.1",
  "blstrs",
@@ -161,12 +160,17 @@ dependencies = [
  "crossbeam-channel",
  "digest 0.10.6",
  "ec-gpu",
- "ec-gpu-gen",
+ "ec-gpu-gen 0.5.0",
  "ff",
+ "fnv",
  "fs2",
  "group",
+ "hwloc",
+ "lazy_static",
+ "libc",
  "log",
  "memmap2",
+ "num_cpus",
  "pairing",
  "rand",
  "rand_core",
@@ -175,6 +179,7 @@ dependencies = [
  "serde",
  "sha2 0.10.6",
  "thiserror",
+ "yastl",
 ]
 
 [[package]]
@@ -384,8 +389,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4e3c5919066adf22df73762e50cffcde3a758f2a848b113b586d1f86728b673b"
 dependencies = [
  "iana-time-zone",
+ "js-sys",
  "num-integer",
  "num-traits",
+ "time",
+ "wasm-bindgen",
  "winapi 0.3.9",
 ]
 
@@ -957,6 +965,29 @@ checksum = "bd63582de2b59ea1aa48d7c1941b5d87618d95484397521b3acdfa0e1e9f5e45"
 
 [[package]]
 name = "ec-gpu-gen"
+version = "0.5.0"
+source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.23dev#da2a7c603e80bedda06bd597c2cefb64f8acbd7b"
+dependencies = [
+ "bitvec",
+ "crossbeam-channel",
+ "ec-gpu",
+ "execute",
+ "ff",
+ "fnv",
+ "group",
+ "hex",
+ "log",
+ "num_cpus",
+ "once_cell",
+ "rayon",
+ "rust-gpu-tools",
+ "sha2 0.10.6",
+ "thiserror",
+ "yastl",
+]
+
+[[package]]
+name = "ec-gpu-gen"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fd09bf9d5313ad60379f70250590bccc10f7a04e2773062ac13255a37022584e"
@@ -1147,6 +1178,7 @@ dependencies = [
  "libc",
  "log",
  "memmap2",
+ "mimalloc",
  "num-traits",
  "rand",
  "rand_chacha",
@@ -1182,8 +1214,6 @@ dependencies = [
 [[package]]
 name = "filecoin-hashers"
 version = "9.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66d7e656d4f01d7772ef2dd0f59854c8f904370a946053cf37ef420c854d9a35"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -1234,25 +1264,29 @@ dependencies = [
 [[package]]
 name = "filecoin-proofs"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e00449c0e89be0922127e7e927e578247825450abdaf0da2fc30b733cb0e535b"
 dependencies = [
  "anyhow",
  "bellperson",
  "bincode",
  "blake2b_simd",
  "blstrs",
+ "byte-slice-cast",
  "filecoin-hashers 9.0.0",
+ "fnv",
  "fr32 7.0.0",
  "generic-array",
  "hex",
  "lazy_static",
+ "libc",
  "log",
+ "memmap",
  "memmap2",
  "merkletree",
  "once_cell",
+ "parking_lot",
  "rand",
  "rayon",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.10.6",
@@ -1284,8 +1318,6 @@ dependencies = [
 [[package]]
 name = "filecoin-proofs-api"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "347a43603e12b147cc3d8285fee27771e1e9702d90f1f8e5018b8dd96b5da467"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -1295,8 +1327,11 @@ dependencies = [
  "filecoin-proofs 14.0.0",
  "fr32 7.0.0",
  "lazy_static",
+ "log",
+ "rayon",
  "serde",
  "storage-proofs-core 14.0.0",
+ "storage-proofs-porep 14.0.0",
 ]
 
 [[package]]
@@ -1376,8 +1411,6 @@ dependencies = [
 [[package]]
 name = "fr32"
 version = "7.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4f07b8a600b8c699f8ddc5f520231bc2aac03e944c64055eccfd9a959c3fd60"
 dependencies = [
  "anyhow",
  "blstrs",
@@ -2038,6 +2071,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "libmimalloc-sys"
+version = "0.1.25"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "libsecp256k1"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2150,6 +2190,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "memmap"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6585fd95e7bb50d6cc31e20d4cf9afb4e2ba16c5846fc76793f11218da9c475b"
+dependencies = [
+ "libc",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "memmap2"
 version = "0.5.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2179,8 +2229,6 @@ dependencies = [
 [[package]]
 name = "merkletree"
 version = "0.22.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d348b5b0d1707be1c8a727b7078daa08e2a3051d63b35715a19c35a324d2aaac"
 dependencies = [
  "anyhow",
  "arrayref",
@@ -2191,6 +2239,13 @@ dependencies = [
  "serde",
  "tempfile",
  "typenum",
+]
+
+[[package]]
+name = "mimalloc"
+version = "0.1.29"
+dependencies = [
+ "libmimalloc-sys",
 ]
 
 [[package]]
@@ -2282,15 +2337,13 @@ dependencies = [
 [[package]]
 name = "neptune"
 version = "8.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9dedb261f1b35ddfd867295eacbc25eb78b4b5b63b08b1c0dc4c1b5ef0e5b2c2"
 dependencies = [
  "bellperson",
  "blake2s_simd 0.5.11",
  "blstrs",
  "byteorder",
  "ec-gpu",
- "ec-gpu-gen",
+ "ec-gpu-gen 0.5.2",
  "ff",
  "fil_pasta_curves",
  "generic-array",
@@ -2465,6 +2518,31 @@ name = "parity-wasm"
 version = "0.42.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be5e13c266502aadf83426d87d81a0f5d1ef45b8027f5a471c360abfe4bfae92"
+
+[[package]]
+name = "parking_lot"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d17b78036a60663b797adeaee46f5c9dfebb86948d1255007a1d6be0271ff99"
+dependencies = [
+ "instant",
+ "lock_api",
+ "parking_lot_core",
+]
+
+[[package]]
+name = "parking_lot_core"
+version = "0.8.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "60a2cfe6f0ad2bfc16aefa463b497d5c7a5ecd44a23efa72aa342d90177356dc"
+dependencies = [
+ "cfg-if",
+ "instant",
+ "libc",
+ "redox_syscall",
+ "smallvec",
+ "winapi 0.3.9",
+]
 
 [[package]]
 name = "paste"
@@ -3007,8 +3085,6 @@ dependencies = [
 [[package]]
 name = "sha2raw"
 version = "9.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d1ec45c74ebb91d25e61e14cfc1925e7571723ae14a38fc6c8bd0b2e516db101"
 dependencies = [
  "byteorder",
  "cpufeatures",
@@ -3100,8 +3176,6 @@ dependencies = [
 [[package]]
 name = "storage-proofs-core"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f756ef2dd06efda2eb30bf6806399d493072d8469b0a724f1905dc051fea59c1"
 dependencies = [
  "aes",
  "anyhow",
@@ -3110,6 +3184,7 @@ dependencies = [
  "blstrs",
  "byteorder",
  "cbc",
+ "chrono",
  "config",
  "ff",
  "filecoin-hashers 9.0.0",
@@ -3173,8 +3248,6 @@ dependencies = [
 [[package]]
 name = "storage-proofs-porep"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2450a62eb009602a4a4d697a027ab1025657cd76b325a99dfeb8d263d44b1c5c"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -3183,6 +3256,7 @@ dependencies = [
  "byte-slice-cast",
  "byteorder",
  "crossbeam",
+ "crossbeam-channel",
  "fdlimit",
  "ff",
  "filecoin-hashers 9.0.0",
@@ -3199,9 +3273,12 @@ dependencies = [
  "num-bigint",
  "num-traits",
  "num_cpus",
+ "parking_lot",
  "pretty_assertions",
  "rayon",
+ "regex",
  "rustversion",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.10.6",
@@ -3236,8 +3313,6 @@ dependencies = [
 [[package]]
 name = "storage-proofs-post"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51e034a55f3c5137120c4cd1abb717cd397c660447c4393c2550be3ee5b070c4"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -3250,7 +3325,9 @@ dependencies = [
  "generic-array",
  "hex",
  "log",
+ "merkletree",
  "rayon",
+ "scopeguard",
  "serde",
  "sha2 0.10.6",
  "storage-proofs-core 14.0.0",
@@ -3283,8 +3360,6 @@ dependencies = [
 [[package]]
 name = "storage-proofs-update"
 version = "14.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3433b2832153e2744bfa87176dcb0b587392b57fd1bd770804d366c98822285a"
 dependencies = [
  "anyhow",
  "bellperson",
@@ -3412,6 +3487,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "time"
+version = "0.1.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b797afad3f312d1c66a56d11d0316f916356d11bd158fbc6ca6389ff6bf805a"
+dependencies = [
+ "libc",
+ "wasi 0.10.0+wasi-snapshot-preview1",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "tinyvec"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3513,6 +3599,12 @@ name = "wasi"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
+
+[[package]]
+name = "wasi"
+version = "0.10.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasi"

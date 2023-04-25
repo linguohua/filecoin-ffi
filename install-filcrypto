@@ -183,6 +183,7 @@ build_from_source() {
         # Unless OpenCL support is specified or we're building on Darwin.
         if [ "${FFI_USE_OPENCL}" == "1" ] || [ "$(uname -s)" = "Darwin" ]; then
             #gpu_flags=",opencl"
+	    echo "WARNING: build with cuda and opencl"
         else
             if [ ! "$(command -v nvcc)" ]; then
                 echo "WARNING: Cannot find nvcc for CUDA support."
