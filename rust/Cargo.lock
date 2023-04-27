@@ -966,7 +966,7 @@ checksum = "bd63582de2b59ea1aa48d7c1941b5d87618d95484397521b3acdfa0e1e9f5e45"
 [[package]]
 name = "ec-gpu-gen"
 version = "0.5.0"
-source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.23dev#e8d0314603a004aef14dc517c61ae776c0ed0538"
+source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.23dev#037e65e6100d73cdd20a45ea738c87a9b9d80d20"
 dependencies = [
  "bitvec",
  "crossbeam-channel",
