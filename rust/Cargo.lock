@@ -200,10 +200,15 @@ dependencies = [
  "ec-gpu",
  "ec-gpu-gen 0.7.0",
  "ff",
+ "fnv",
  "fs2",
  "group",
+ "hwloc",
+ "lazy_static",
+ "libc",
  "log",
  "memmap2",
+ "num_cpus",
  "pairing",
  "rand",
  "rand_core",
@@ -213,6 +218,7 @@ dependencies = [
  "sha2 0.10.7",
  "supraseal-c2",
  "thiserror",
+ "yastl",
 ]
 
 [[package]]
@@ -1167,6 +1173,7 @@ dependencies = [
  "libc",
  "log",
  "memmap2",
+ "mimalloc",
  "num-traits",
  "rand",
  "rand_chacha",
@@ -2014,6 +2021,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "libmimalloc-sys"
+version = "0.1.25"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "libsecp256k1"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2108,6 +2122,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "memmap"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6585fd95e7bb50d6cc31e20d4cf9afb4e2ba16c5846fc76793f11218da9c475b"
+dependencies = [
+ "libc",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "memmap2"
 version = "0.5.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2140,6 +2164,13 @@ dependencies = [
  "serde",
  "tempfile",
  "typenum",
+]
+
+[[package]]
+name = "mimalloc"
+version = "0.1.29"
+dependencies = [
+ "libmimalloc-sys",
 ]
 
 [[package]]
@@ -3108,9 +3139,12 @@ dependencies = [
  "num-bigint",
  "num-traits",
  "num_cpus",
+ "parking_lot",
  "pretty_assertions",
  "rayon",
+ "regex",
  "rustversion",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.10.7",
@@ -3287,6 +3321,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "time"
+version = "0.1.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b797afad3f312d1c66a56d11d0316f916356d11bd158fbc6ca6389ff6bf805a"
+dependencies = [
+ "libc",
+ "wasi 0.10.0+wasi-snapshot-preview1",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "tinyvec"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3388,6 +3433,12 @@ name = "wasi"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
+
+[[package]]
+name = "wasi"
+version = "0.10.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasi"
