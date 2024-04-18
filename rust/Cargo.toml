@@ -20,6 +20,8 @@ crate-type = ["rlib", "staticlib"]
 [dependencies]
 bls-signatures = { version = "0.15.0", default-features = false, features = ["blst"] }
 blstrs = "0.7"
+byteorder = "1.4.3"
+mimalloc = { version = "*", default-features = false }
 filepath = "0.1.1"
 group = "0.13"
 libc = "0.2.58"
@@ -61,4 +63,18 @@ multicore-sdr = ["filecoin-proofs-api/multicore-sdr"]
 c-headers = ["safer-ffi/headers"]
 # This feature enables a fixed number of discarded rows for TreeR. The `FIL_PROOFS_ROWS_TO_DISCARD`
 # setting is ignored, no `TemporaryAux` file will be written.
-fixed-rows-to-discard = ["filecoin-proofs-api/fixed-rows-to-discard"]
+#fixed-rows-to-discard = ["filecoin-proofs-api/fixed-rows-to-discard"]
+
+[patch.crates-io]
+filecoin-proofs-api = { path = '../../../../rust-filecoin-proofs-api' }
+storage-proofs-core = { path = '../../../../lin-rust-fil-proofs/storage-proofs-core' }
+storage-proofs-porep = { path = '../../../../lin-rust-fil-proofs/storage-proofs-porep' }
+storage-proofs-post = { path = '../../../../lin-rust-fil-proofs/storage-proofs-post' }
+fr32 = { path = '../../../../lin-rust-fil-proofs/fr32' }
+filecoin-proofs = { package = "filecoin-proofs", path = '../../../../lin-rust-fil-proofs/filecoin-proofs' }
+filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
+neptune = { path = '../../../../neptune' }
+ec-gpu-gen = { git = 'https://github.com/linguohua/ec-gpu.git', branch = "v1.25.1dev" }
+merkletree = { path = '../../../../merkletree' }
+bellperson = { path = '../../../../lin-bellperson' }
+mimalloc = { path = '../../../../mimalloc_rust' }
