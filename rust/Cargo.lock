@@ -200,9 +200,8 @@ dependencies = [
 [[package]]
 name = "bellperson"
 version = "0.26.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5c41bd83b8437856d267eb311de13dcd9bff9077cc5ba35c7ec886070dea8a45"
 dependencies = [
+ "anyhow",
  "bellpepper-core",
  "bincode",
  "blake2s_simd 1.0.2",
@@ -213,10 +212,15 @@ dependencies = [
  "ec-gpu",
  "ec-gpu-gen 0.7.0",
  "ff",
+ "fnv",
  "fs2",
  "group",
+ "hwloc",
+ "lazy_static",
+ "libc",
  "log",
  "memmap2",
+ "num_cpus",
  "pairing",
  "rand",
  "rand_core",
@@ -226,6 +230,7 @@ dependencies = [
  "sha2 0.10.8",
  "supraseal-c2",
  "thiserror",
+ "yastl",
 ]
 
 [[package]]
@@ -1102,14 +1107,14 @@ dependencies = [
 [[package]]
 name = "ec-gpu-gen"
 version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "50c3a1c7cc1906cead1b1763ab4ad1b86f0fa037c4407e2c7f90568f9c2eeb78"
+source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.26.2dev#f5e2b00709e066812e1c3b4a5950904480f20eff"
 dependencies = [
  "bitvec",
  "crossbeam-channel",
  "ec-gpu",
  "execute",
  "ff",
+ "fnv",
  "group",
  "hex",
  "log",
@@ -1276,6 +1281,7 @@ dependencies = [
  "anyhow",
  "bls-signatures",
  "blstrs",
+ "byteorder",
  "cid",
  "fil_logger",
  "filecoin-proofs-api",
@@ -1293,6 +1299,7 @@ dependencies = [
  "libc",
  "log",
  "memmap2",
+ "mimalloc",
  "num-traits",
  "rand",
  "rand_chacha",
@@ -1339,17 +1346,22 @@ dependencies = [
  "blstrs",
  "ff",
  "filecoin-hashers",
+ "fnv",
  "fr32",
  "generic-array 0.14.7",
  "hex",
  "iowrap",
  "lazy_static",
+ "libc",
  "log",
+ "memmap",
  "memmap2",
  "merkletree",
  "once_cell",
+ "parking_lot",
  "rand",
  "rayon",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.10.8",
@@ -1372,8 +1384,11 @@ dependencies = [
  "filecoin-proofs",
  "fr32",
  "lazy_static",
+ "log",
+ "rayon",
  "serde",
  "storage-proofs-core",
+ "storage-proofs-porep",
 ]
 
 [[package]]
@@ -2162,6 +2177,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "instant"
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
 name = "inventory"
 version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2308,6 +2332,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "libmimalloc-sys"
+version = "0.1.25"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "libsecp256k1"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2408,6 +2439,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "memmap"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6585fd95e7bb50d6cc31e20d4cf9afb4e2ba16c5846fc76793f11218da9c475b"
+dependencies = [
+ "libc",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "memmap2"
 version = "0.5.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2428,8 +2469,6 @@ dependencies = [
 [[package]]
 name = "merkletree"
 version = "0.23.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a0ed8c0ce1e281870da29266398541a0dbab168f5fb5fd36d7ef2bbdbf808a3"
 dependencies = [
  "anyhow",
  "arrayref",
@@ -2440,6 +2479,13 @@ dependencies = [
  "serde",
  "tempfile",
  "typenum",
+]
+
+[[package]]
+name = "mimalloc"
+version = "0.1.29"
+dependencies = [
+ "libmimalloc-sys",
 ]
 
 [[package]]
@@ -2530,8 +2576,6 @@ dependencies = [
 [[package]]
 name = "neptune"
 version = "11.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7eaa7f90368545907dce7d5652a78f96a77d1e97019b230edbf54ce2440d5698"
 dependencies = [
  "bellpepper",
  "bellpepper-core",
@@ -3401,6 +3445,7 @@ dependencies = [
  "byteorder",
  "chacha20",
  "crossbeam",
+ "crossbeam-channel",
  "fdlimit",
  "ff",
  "filecoin-hashers",
@@ -3418,9 +3463,12 @@ dependencies = [
  "num-bigint",
  "num-traits",
  "num_cpus",
+ "parking_lot",
  "pretty_assertions",
  "rayon",
+ "regex",
  "rustversion",
+ "scopeguard",
  "serde",
  "serde_json",
  "sha2 0.10.8",
@@ -3443,7 +3491,9 @@ dependencies = [
  "filecoin-hashers",
  "generic-array 0.14.7",
  "log",
+ "merkletree",
  "rayon",
+ "scopeguard",
  "serde",
  "sha2 0.10.8",
  "storage-proofs-core",
