@@ -199,13 +199,13 @@ build_from_source() {
             gpu_flags=""
         # Check if OpenCL support is specified or we're building on Darwin.
         elif [ "${FFI_USE_OPENCL}" == "1" ] || [ "${FFI_PORTABLE}" == "1" ] || [ "$(uname -s)" = "Darwin" ]; then
-            gpu_flags=",opencl"
+            gpu_flags=",cuda,opencl"
         else
             # If GPUs are enabled and SupraSeal is not, default to CUDA support
             # where possible.
             # First ensure that nvcc (as part of the CUDA toolkit) is available --
             # if it's not warn that we are defaulting GPU to OpenCL instead.
-            gpu_flags=",cuda"
+            gpu_flags=",cuda,opencl"
 
             if [ ! "$(command -v nvcc)" ]; then
                 echo "WARNING: Cannot find nvcc for CUDA support."
