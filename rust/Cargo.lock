@@ -200,8 +200,9 @@ dependencies = [
 [[package]]
 name = "bellperson"
 version = "0.26.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c41bd83b8437856d267eb311de13dcd9bff9077cc5ba35c7ec886070dea8a45"
 dependencies = [
- "anyhow",
  "bellpepper-core",
  "bincode",
  "blake2s_simd 1.0.2",
@@ -210,17 +211,12 @@ dependencies = [
  "crossbeam-channel",
  "digest 0.10.7",
  "ec-gpu",
- "ec-gpu-gen 0.7.0",
+ "ec-gpu-gen 0.7.1",
  "ff",
- "fnv",
  "fs2",
  "group",
- "hwloc",
- "lazy_static",
- "libc",
  "log",
  "memmap2",
- "num_cpus",
  "pairing",
  "rand",
  "rand_core",
@@ -230,7 +226,6 @@ dependencies = [
  "sha2 0.10.8",
  "supraseal-c2",
  "thiserror",
- "yastl",
 ]
 
 [[package]]
@@ -1106,15 +1101,15 @@ dependencies = [
 
 [[package]]
 name = "ec-gpu-gen"
-version = "0.7.0"
-source = "git+https://github.com/linguohua/ec-gpu.git?branch=v1.26.2dev#f5e2b00709e066812e1c3b4a5950904480f20eff"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2353854622ec1abfd22243eb958453b95f1502e2a56648bf9db49ccbfb55f01"
 dependencies = [
  "bitvec",
  "crossbeam-channel",
  "ec-gpu",
  "execute",
  "ff",
- "fnv",
  "group",
  "hex",
  "log",
