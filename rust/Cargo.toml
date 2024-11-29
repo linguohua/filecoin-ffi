@@ -96,5 +96,5 @@ filecoin-hashers = { path = '../../../../lin-rust-fil-proofs/filecoin-hashers' }
 neptune = { path = '../../../../neptune' }
 #ec-gpu-gen = { git = 'https://github.com/linguohua/ec-gpu.git', branch = "v1.26.2dev" }
 merkletree = { path = '../../../../merkletree' }
-#bellperson = { path = '../../../../lin-bellperson' }
+bellperson = { path = '../../../../bellperson' }
 mimalloc = { path = '../../../../mimalloc_rust' }
