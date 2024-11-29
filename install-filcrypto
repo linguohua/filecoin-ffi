@@ -191,7 +191,7 @@ build_from_source() {
             echo "WARNING: After installation, nvcc must be in the system path."
             echo ""
             echo "WARNING: Defaulting to OpenCL GPU support(!!!)"
-            gpu_flags=",opencl"
+            #gpu_flags=",opencl"
         fi
     else
         # Check if GPU usage is to be disabled.
