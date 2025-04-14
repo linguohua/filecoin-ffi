@@ -76,7 +76,7 @@ main() {
     # The header files are the same even without having any features enables,
     # this reduces the compile time and makes it work on more platforms.
     RUSTFLAGS="${__rust_flags}" HEADER_DIR="." \
-        cargo test --no-default-features --locked build_headers --features c-headers
+        cargo test --no-default-features --locked build_headers --features c-headers,cuda-supraseal
 
     # generate pkg-config
     #
