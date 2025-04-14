@@ -56,7 +56,7 @@ memmap2 = "0.9"
 tempfile = "3.12.0"
 
 [features]
-default = ["cuda", "multicore-sdr"]
+default = ["cuda", "cuda-supraseal",  "multicore-sdr"]
 blst-portable = ["bls-signatures/blst-portable", "blstrs/portable"]
 cuda = [
   "filecoin-proofs-api/cuda",
